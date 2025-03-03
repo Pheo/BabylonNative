@@ -50,10 +50,18 @@ BX_PRAGMA_DIAGNOSTIC_IGNORED_MSVC(4244) // warning C4244: '=' : conversion from 
 #include "Shaders/spirv/vs_nanovg_fill.h"
 #include "Shaders/spirv/fs_nanovg_fill.h"
 
+// TODO: vs_canvas_filter_blur
+#include "Shaders/dx11/fs_canvas_filter_blur.h"
+#include "Shaders/metal/fs_canvas_filter_blur.h"
+#include "Shaders/glsl/fs_canvas_filter_blur.h"
+#include "Shaders/essl/fs_canvas_filter_blur.h"
+#include "Shaders/spirv/fs_canvas_filter_blur.h"
+
 static const bgfx::EmbeddedShader s_embeddedShadersBabylon[] =
 {
     BGFX_EMBEDDED_SHADER(vs_nanovg_fill),
     BGFX_EMBEDDED_SHADER(fs_nanovg_fill),
+    BGFX_EMBEDDED_SHADER(fs_canvas_filter_blur),
 
     BGFX_EMBEDDED_SHADER_END()
 };
@@ -765,6 +773,15 @@ namespace
                 , bgfx::createEmbeddedShader(s_embeddedShadersBabylon, type, "fs_nanovg_fill")
                 , true
             );
+
+            /*
+            // TODO: vs_canvas_filter_blur
+            gl->prog = bgfx::createProgram(
+                  bgfx::createEmbeddedShader(s_embeddedShadersBabylon, type, "vs_canvas_filter_blur")
+                , bgfx::createEmbeddedShader(s_embeddedShadersBabylon, type, "fs_canvas_filter_blur")
+                , true
+            );
+            */
         }
 
         if (gl->ncalls > 0)
