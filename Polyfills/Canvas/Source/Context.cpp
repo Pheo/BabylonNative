@@ -48,6 +48,7 @@ namespace Babylon::Polyfills::Internal
                 InstanceMethod("clearRect", &Context::ClearRect),
                 InstanceMethod("save", &Context::Save),
                 InstanceMethod("restore", &Context::Restore),
+                InstanceMethod("filter", &Context::Filter),
                 InstanceMethod("fillRect", &Context::FillRect),
                 InstanceMethod("scale", &Context::Scale),
                 InstanceMethod("rotate", &Context::Rotate),
@@ -148,6 +149,14 @@ namespace Babylon::Polyfills::Internal
         }
 
         m_isClipped = false;
+    }
+
+    void Context::Filter(const Napi::CallbackInfo& info)
+    {
+        auto string = info[0].As<Napi::String>().Utf8Value();
+        // TODO: check for 'none'
+        // TODO: check for 'blur(..)'
+        // TODO: else, throw unsupported
     }
 
     void Context::FillRect(const Napi::CallbackInfo& info)

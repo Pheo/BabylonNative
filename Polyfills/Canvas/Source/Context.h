@@ -23,6 +23,7 @@ namespace Babylon::Polyfills::Internal
         NVGcontext* GetNVGContext() const { return *m_nvg.get(); }
 
     private:
+        void Filter(const Napi::CallbackInfo&);
         void FillRect(const Napi::CallbackInfo&);
         Napi::Value MeasureText(const Napi::CallbackInfo&);
         void FillText(const Napi::CallbackInfo&);
