@@ -98,7 +98,7 @@ CreateBoxAsync(scene).then(function () {
             scene.onBeforeRenderObservable.add(() => {
                 // animated shape
                 context.save();
-                context.fillStyle = "DarkRed";
+                context.fillStyle = "DarkOrange"; // "DarkRed";
                 context.fillRect(0, 0, texSize, texSize);
                 const left = 0;
                 const top = texSize - (texSize * 0.25);
@@ -110,11 +110,127 @@ CreateBoxAsync(scene).then(function () {
                 const rectangleV = height * 0.5 + top;
                 context.translate(rectangleU + offsetU, rectangleV + offsetV);
                 context.rotate(t);
-                context.fillStyle = "DarkOrange";
+                context.fillStyle = "Pink"; // "DarkOrange";
                 context.transform(1, t, 0.8, 1, 0, 0);
                 context.fillRect(-width * 0.5, -height * 0.5, width, height);
                 context.restore();
+                
+                /*
+                // DEBUG: repro stacked text
+                context.fillStyle = "#50b2c0ff";
+                context.filter = "none";
+                context.translate(13.9017, 13.9017);
+                context.font = "400 93.30000000000001px 'content:Shrikhand', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Sweet", 0, 96);
+                context.fillText("&", 109.48754119873047, 161.31);
+                context.fillText("Sour", 25.937400817871094, 226.62);
+                //context.setTransform({ a : 0.9999999470310286, b : 0, c : 0, d : 0.9999999470310286, e : 472.30608040094376, f : 333.1899915933609, is2D : true, isIdentity : false, m11 : 0.9999999470310286, m12 : 0, m13 : 0, m14 : 0, m21 : 0, m22 : 0.9999999470310286, m23 : 0, m24 : 0, m31 : 0, m32 : 0, m33 : 1, m34 : 0, m41 : 472.30608040094376, m42 : 333.1899915933609, m43 : 0, m44 : 1 });
+                
+                context.getTransform();
+                context.fillStyle = "#faaa8dff";
+                context.filter = "none";
+                context.translate(9.2367, 9.2367);
+                context.font = "400 93.30000000000001px 'content:Shrikhand', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Sweet", 0, 96);
+                context.fillText("&", 109.48754119873047, 161.31);
+                context.fillText("Sour", 25.937400817871094, 226.62);
+                //context.setTransform({ a : 0.9999999403953552, b : 0, c : 0, d : 0.9999999403953552, e : 472.30609130859375, f : 333.19000244140625, is2D : true, isIdentity : false, m11 : 0.9999999403953552, m12 : 0, m13 : 0, m14 : 0, m21 : 0, m22 : 0.9999999403953552, m23 : 0, m24 : 0, m31 : 0, m32 : 0, m33 : 1, m34 : 0, m41 : 472.30609130859375, m42 : 333.19000244140625, m43 : 0, m44 : 1 });
+                
+                context.getTransform();
+                context.fillStyle = "#ff4000ff";
+                context.filter = "none";
+                context.translate(4.665, 4.665);
+                context.font = "400 93.30000000000001px 'content:Shrikhand', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Sweet", 0, 96);
+                context.fillText("&", 109.48754119873047, 161.31);
+                context.fillText("Sour", 25.937400817871094, 226.62);
+                //context.setTransform({ a : 0.9999999403953552, b : 0, c : 0, d : 0.9999999403953552, e : 472.30609130859375, f : 333.19000244140625, is2D : true, isIdentity : false, m11 : 0.9999999403953552, m12 : 0, m13 : 0, m14 : 0, m21 : 0, m22 : 0.9999999403953552, m23 : 0, m24 : 0, m31 : 0, m32 : 0, m33 : 1, m34 : 0, m41 : 472.30609130859375, m42 : 333.19000244140625, m43 : 0, m44 : 1, });
+                
+                context.filter = "none";
+                context.strokeStyle = "#ff4000ff";
+                context.lineWidth = 300.0; //context.lineWidth = 7.464;
+                context.lineCap = "round";
+                context.lineJoin = "round";
+                context.miterLimit = 1.0; // context.miterLimit = 4;
+                context.font = "400 93.30000000000001px 'content:Shrikhand', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Sweet", 0, 96);
+                context.fillText("&", 109.48754119873047, 161.31);
+                context.fillText("Sour", 25.937400817871094, 226.62);
+                
+                context.fillStyle = "#feefddff";
+                context.font = "400 93.30000000000001px 'content:Shrikhand', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Sweet", 0, 96);
+                context.fillText("&", 109.48754119873047, 161.31);
+                context.fillText("Sour", 25.937400817871094, 226.62);
+                */
+                
+                /*
+                // DEBUG: repro tiled shadow
+                context.font = "400 93.30000000000001px 'content:Shrikhand', 'content:fallback'";
 
+                //context.restore();
+                //context.restore();
+                context.fillStyle = "#00000066";
+                context.filter = "blur(215.97222222222223px)";
+                context.translate(0,0);
+                context.font = "font=400 172.77777777777777px 'content:builtin:Impact', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Shadow", 0, 156);
+                //context.setTransform({ a : 0.9999999470310286, b : 0, c : 0, d : 0.9999999470310286, e : 409.65302020311356, f : 367.000003695488, is2D : true, isIdentity : false, m11 : 0.9999999470310286, m12 : 0, m13 : 0, m14 : 0, m21 : 0, m22 : 0.9999999470310286, m23 : 0, m24 : 0, m31 : 0, m32 : 0, m33 : 1, m34 : 0, m41 : 409.65302020311356, m42 : 367.000003695488, m43 : 0, m44 : 1 });
+                
+                context.filter = "none";
+                context.fillStyle = "#ffffffff";
+                context.font = "font=400 172.77777777777777px 'content:builtin:Impact', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Shadow", 0, 156);
+                // context.restore();
+                // context.restore();
+                */
+                
+                // DEBUG: repro oval rectangles
+                context.filter = "none";
+                context.save();
+                context.font = "font=900 96.75555555555555px 'content:builtin:Raleway', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.measureText("Rounded");
+                context.restore();
+                
+                // context.save();
+                // context.scale(933, 933);
+                context.save();
+                context.transform(0.0010718113612004287, 0, 0, 0.0010718113612004287, 0.6128521067792069, 0.439978563772776);
+                context.save();
+                context.filter = "none";
+                context.fillStyle = "#b926ffff";
+                let path = new Path2D();
+                path.roundRect(-77.75, -27.644444444444446, 531.91796875, 167.2888888888889, { x: 38.875, y: 38.875 });
+                context.fill(path);
+                context.restore();
+                
+                context.filter = "none";
+                context.fillStyle = "#ffffffff";
+                context.font = "font=900 96.75555555555555px 'content:builtin:Raleway', 'content:fallback'";
+                context.letterSpacing = "0px";
+                context.direction = "ltr";
+                context.fillText("Rounded", 0, 88);
+                
+                //context.restore();
+                //context.restore();
+
+                /*
                 // curve
                 context.beginPath();
                 context.moveTo(75 * 2, 25 * 2);
@@ -246,6 +362,7 @@ CreateBoxAsync(scene).then(function () {
                 context.clip();
                 context.fillStyle = "blue";
                 context.fillRect(0, 0, 1000, 1000);
+                */
 
                 // tick update
                 dynamicTexture.update();
